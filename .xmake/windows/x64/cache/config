@@ -1,0 +1,12 @@
+{
+    options = {
+        arch = "x64",
+        mode = "release",
+        plat = "windows"
+    },
+    mtimes = {
+        ["..\\..\\.tools\\CommonLibSSE-NG-7.5.1\\xmake.lua"] = 1789830629,
+        ["xmake.lua"] = 1789830887
+    },
+    recheck = false
+}

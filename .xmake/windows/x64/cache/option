@@ -1,0 +1,40 @@
+{
+    skyrim_ae = {
+        default = true,
+        defines = "ENABLE_SKYRIM_AE=1",
+        __sourceinfo_defines = {
+            ["ENABLE_SKYRIM_AE=1"] = {
+                file = [[.\.tools\CommonLibSSE-NG-7.5.1\xmake.lua]],
+                line = 43
+            }
+        },
+        __sourceinfo_description = {
+            ["Enable runtime support for Skyrim AE"] = {
+                file = [[.\.tools\CommonLibSSE-NG-7.5.1\xmake.lua]],
+                line = 42
+            }
+        },
+        __scriptdir = [[E:\MCM Menu\.tools\CommonLibSSE-NG-7.5.1]],
+        description = "Enable runtime support for Skyrim AE",
+        __sourceinfo_default = { }
+    },
+    skyrim_se = {
+        default = true,
+        defines = "ENABLE_SKYRIM_SE=1",
+        __sourceinfo_defines = {
+            ["ENABLE_SKYRIM_SE=1"] = {
+                file = [[.\.tools\CommonLibSSE-NG-7.5.1\xmake.lua]],
+                line = 37
+            }
+        },
+        __sourceinfo_description = {
+            ["Enable runtime support for Skyrim SE"] = {
+                file = [[.\.tools\CommonLibSSE-NG-7.5.1\xmake.lua]],
+                line = 36
+            }
+        },
+        __scriptdir = [[E:\MCM Menu\.tools\CommonLibSSE-NG-7.5.1]],
+        description = "Enable runtime support for Skyrim SE",
+        __sourceinfo_default = { }
+    }
+}

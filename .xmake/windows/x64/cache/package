@@ -1,0 +1,64 @@
+{
+    directxtk = {
+        installdir = [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxtk\24.2.0\f6fb9eaf439246fdb823f48a8816ec0c]],
+        __enabled = true,
+        libfiles = [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxtk\24.2.0\f6fb9eaf439246fdb823f48a8816ec0c\lib\DirectXTK.lib]],
+        links = "DirectXTK",
+        sysincludedirs = [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxtk\24.2.0\f6fb9eaf439246fdb823f48a8816ec0c\include]],
+        __requirestr = "directxtk 24.2.0",
+        linkdirs = [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxtk\24.2.0\f6fb9eaf439246fdb823f48a8816ec0c\lib]],
+        envs = {
+            PATH = {
+                [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxtk\24.2.0\f6fb9eaf439246fdb823f48a8816ec0c\bin]],
+                [[C:\Users\josep\AppData\Local\.xmake\packages\n\ninja\v1.13.2\388143d312d14320a9c5240d43405107\bin]],
+                [[C:\Users\josep\AppData\Local\.xmake\packages\c\cmake\4.3.4\0f8cea59944043e09419f613dd6acd4d\bin]]
+            }
+        },
+        version = "24.2.0",
+        static = true
+    },
+    spdlog = {
+        defines = {
+            "SPDLOG_COMPILED_LIB",
+            "SPDLOG_USE_STD_FORMAT",
+            "SPDLOG_WCHAR_TO_UTF8_SUPPORT"
+        },
+        installdir = [[C:\Users\josep\AppData\Local\.xmake\packages\s\spdlog\v1.16.0\1053dccb2da94316b3bef3cb1db15374]],
+        __requirestr = "spdlog v1.16.0",
+        linkdirs = [[C:\Users\josep\AppData\Local\.xmake\packages\s\spdlog\v1.16.0\1053dccb2da94316b3bef3cb1db15374\lib]],
+        __enabled = true,
+        license = "MIT",
+        links = "spdlog",
+        sysincludedirs = [[C:\Users\josep\AppData\Local\.xmake\packages\s\spdlog\v1.16.0\1053dccb2da94316b3bef3cb1db15374\include]],
+        static = true,
+        libfiles = [[C:\Users\josep\AppData\Local\.xmake\packages\s\spdlog\v1.16.0\1053dccb2da94316b3bef3cb1db15374\lib\spdlog.lib]],
+        envs = {
+            PATH = {
+                [[C:\Users\josep\AppData\Local\.xmake\packages\n\ninja\v1.13.2\388143d312d14320a9c5240d43405107\bin]],
+                [[C:\Users\josep\AppData\Local\.xmake\packages\c\cmake\4.3.4\0f8cea59944043e09419f613dd6acd4d\bin]]
+            }
+        },
+        version = "v1.16.0",
+        __requireconfs = {
+            configs = {
+                wchar = true,
+                header_only = false,
+                std_format = true
+            }
+        }
+    },
+    directxmath = {
+        installdir = [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxmath\2024.02\b43cee1705a040bdb171c586b0ad9685]],
+        sysincludedirs = [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxmath\2024.02\b43cee1705a040bdb171c586b0ad9685\include\directxmath]],
+        license = "MIT",
+        __requirestr = "directxmath 2024.02",
+        envs = {
+            PATH = {
+                [[C:\Users\josep\AppData\Local\.xmake\packages\n\ninja\v1.13.2\388143d312d14320a9c5240d43405107\bin]],
+                [[C:\Users\josep\AppData\Local\.xmake\packages\c\cmake\4.3.4\0f8cea59944043e09419f613dd6acd4d\bin]]
+            }
+        },
+        version = "2024.02",
+        __enabled = true
+    }
+}

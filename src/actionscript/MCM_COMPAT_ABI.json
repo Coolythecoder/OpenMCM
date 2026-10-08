@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "mcmApiVersion": 4,
+  "rootPath": "_root.ConfigPanelFader.configPanel",
+  "bootstrap": "MCMCompatBootstrap.install(journal)",
+  "optionTypes": {
+    "empty": 0,
+    "header": 1,
+    "text": 2,
+    "toggle": 3,
+    "slider": 4,
+    "menu": 5,
+    "color": 6,
+    "keymap": 7,
+    "input": 8
+  },
+  "optionFlags": {
+    "disabled": 1,
+    "hidden": 2,
+    "withUnmap": 4
+  },
+  "publicProperties": [
+    "selectedKeyCode",
+    "optionCursorIndex",
+    "optionCursor.strValue",
+    "optionCursor.numValue"
+  ],
+  "publicMethods": [
+    "initExtensions",
+    "setPlatform",
+    "startPage",
+    "endPage",
+    "handleInput",
+    "unlock",
+    "setModNames",
+    "setPageNames",
+    "setCustomContentParams",
+    "loadCustomContent",
+    "unloadCustomContent",
+    "setTitleText",
+    "setInfoText",
+    "setOptionFlagsBuffer",
+    "setOptionTextBuffer",
+    "setOptionStrValueBuffer",
+    "setOptionNumValueBuffer",
+    "flushOptionBuffers",
+    "invalidateOptionData",
+    "setOptionFlags",
+    "forcePageReset",
+    "setSliderDialogParams",
+    "setMenuDialogOptions",
+    "setMenuDialogParams",
+    "setColorDialogParams",
+    "setInputDialogParams",
+    "showMessageDialog",
+    "EndRemapMode"
+  ],
+  "outboundEvents": [
+    "SKICP_modSelected",
+    "SKICP_pageSelected",
+    "SKICP_optionHighlighted",
+    "SKICP_optionSelected",
+    "SKICP_optionDefaulted",
+    "SKICP_keymapChanged",
+    "SKICP_sliderSelected",
+    "SKICP_sliderAccepted",
+    "SKICP_menuSelected",
+    "SKICP_menuAccepted",
+    "SKICP_colorSelected",
+    "SKICP_colorAccepted",
+    "SKICP_inputSelected",
+    "SKICP_inputAccepted",
+    "SKICP_dialogCanceled",
+    "SKICP_messageDialogClosed"
+  ],
+  "runtimeDependencies": [
+    "AVM1 / ActionScript 2",
+    "Skyrim Journal Menu host",
+    "SKSE injected skse bridge for mod events and key remapping"
+  ],
+  "notRequired": [
+    "SkyUI ActionScript classes",
+    "SkyUI exported symbols",
+    "SkyUI artwork",
+    "Scaleform CLIK components"
+  ]
+}

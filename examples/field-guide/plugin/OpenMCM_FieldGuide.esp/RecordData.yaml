@@ -1,0 +1,18 @@
+SpriggitSource:
+  PackageName: Spriggit.Yaml.Skyrim
+  Version: 0.41
+ModKey: OpenMCM_FieldGuide.esp
+GameRelease: SkyrimSE
+ModHeader:
+  Flags:
+  - Small
+  Stats:
+    Version: 1.7
+  Author: OpenMCM contributors
+  Description: Optional practical OpenMCM API example. Requires OpenMCM 1.2.0-alpha.5 or newer; not a replacement MCM host.
+  MasterReferences:
+  - Master: Skyrim.esm
+    FileSize: 0
+  - Master: SkyUI_SE.esp
+    FileSize: 0
+  INTV: 1

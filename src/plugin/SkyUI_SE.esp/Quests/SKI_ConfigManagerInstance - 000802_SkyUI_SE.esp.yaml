@@ -1,0 +1,44 @@
+FormKey: 000802:SkyUI_SE.esp
+EditorID: SKI_ConfigManagerInstance
+Version2: 1
+VirtualMachineAdapter:
+  Scripts:
+  - Name: SKI_ConfigManager
+  - Name: SKI_QF_ConfigManagerInstance
+    Properties:
+    - MutagenObjectType: ScriptObjectProperty
+      Name: Alias_PlayerRef
+      Object: 000802:SkyUI_SE.esp
+      Alias: 0
+  FileName: SKI_QF_ConfigManagerInstance
+  Fragments:
+  - Stage: 1
+    Unknown2: 1
+    ScriptName: SKI_QF_ConfigManagerInstance
+    FragmentName: Fragment_0
+  Aliases:
+  - Property:
+      Name: ''
+      Object: 000802:SkyUI_SE.esp
+      Alias: 0
+    Scripts:
+    - Name: SKI_PlayerLoadGameAlias
+Name:
+  TargetLanguage: English
+  Value: OpenMCM Config Manager
+Flags:
+- StartGameEnabled
+- AllowRepeatedStages
+- 0x10
+- RunOnce
+Stages:
+- Index: 1
+  Unknown: 19
+  LogEntries:
+  - Flags: []
+NextAliasID: 1
+Aliases:
+- Name: PlayerRef
+  Flags: []
+  ForcedReference: 000014:Skyrim.esm
+  VoiceTypes: Null

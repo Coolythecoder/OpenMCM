@@ -1,0 +1,18 @@
+SpriggitSource:
+  PackageName: Spriggit.Yaml.Skyrim
+  Version: 0.41
+ModKey: OpenMCM.esp
+GameRelease: SkyrimSE
+ModHeader:
+  Flags:
+  - Small
+  Stats:
+    Version: 1.7
+  Author: OpenMCM contributors
+  Description: OpenMCM status provider for SkyUI coexistence. Requires the original SkyUI_SE.esp.
+  MasterReferences:
+  - Master: Skyrim.esm
+    FileSize: 0
+  - Master: SkyUI_SE.esp
+    FileSize: 0
+  INTV: 1

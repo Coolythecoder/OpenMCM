@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body { margin:0;background:#183628 } ruffle-player { width:1280px;height:720px;display:block }</style>
+<script>
+window.events = [];
+window.recordAVM1 = (kind, data) => { window.events.push({kind, data}); console.log('AVM1 ' + JSON.stringify({kind,data})); };
+window.RufflePlayer = {config: {autoplay:'on',unmuteOverlay:'hidden',allowScriptAccess:true,logLevel:'warn'}};
+</script>
+<script src="/node_modules/@ruffle-rs/ruffle/ruffle.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', async () => {
+  const player = window.RufflePlayer.newest().createPlayer();
+  document.body.appendChild(player);
+  window.fixturePlayer = player;
+  const swf = new URLSearchParams(location.search).get('swf') || 'fixture.swf';
+  await player.ruffle().load({url:'/' + swf,allowScriptAccess:true,
+    parameters:{fixtureDiagnostics:new URLSearchParams(location.search).get('diagnostics') || 'false',
+      fixtureBoundary:new URLSearchParams(location.search).get('boundary') || 'false',
+      fixtureFlow:new URLSearchParams(location.search).get('flow') || 'false'}});
+});
+</script>

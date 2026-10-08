@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "contract_name": "Standalone MCM / SkyUI 6 drop-in compatibility",
+  "provenance": {
+    "skyui_6": {
+      "repository": "https://github.com/doodlum/SkyUI-Community",
+      "commit": "b7a24a936647e815269e34f4899e4b09768eff29",
+      "reference_files": [
+        "source/scripts/SKI_ConfigBase.psc",
+        "source/scripts/SKI_ConfigManager.psc",
+        "source/actionscript/ModConfigPanel/ConfigPanel.as",
+        "source/actionscript/PauseMenu/Quest_Journal.as",
+        "data/SkyUI_SE.esp"
+      ]
+    },
+    "mcm_helper": {
+      "repository": "https://github.com/Exit-9B/MCM-Helper",
+      "commit": "a30334864ea46ab6ee9e74bca06187630b67c039",
+      "reference_files": [
+        "src/Script/SkyUI.cpp",
+        "src/Script/SkyUI.h",
+        "scripts/private/MCM_ConfigBase.psc"
+      ]
+    }
+  },
+  "identity": {
+    "plugin_name": "SkyUI_SE.esp",
+    "plugin_path": "SkyUI_SE.esp",
+    "manager_form_local_id": "0x00000802",
+    "manager_editor_id": "SKI_ConfigManagerInstance",
+    "manager_script": "SKI_ConfigManager",
+    "plugin_record_flags_required": "0x00000200",
+    "manager_quest_flags_required": "0x00000119",
+    "manager_stage": 1,
+    "manager_fragment_script": "SKI_QF_ConfigManagerInstance",
+    "manager_fragment_name": "Fragment_0",
+    "player_alias_id": 0,
+    "player_alias_name": "PlayerRef",
+    "player_alias_property": "Alias_PlayerRef",
+    "player_alias_script": "SKI_PlayerLoadGameAlias",
+    "player_reference_form_local_id": "0x00000014",
+    "allowed_masters": [
+      "Skyrim.esm",
+      "Update.esm",
+      "Dawnguard.esm",
+      "HearthFires.esm",
+      "Dragonborn.esm"
+    ],
+    "source_header_globs": [
+      "**/SkyUI_SE.esp/RecordData.yaml"
+    ],
+    "source_record_globs": [
+      "**/SkyUI_SE.esp/Quests/*.yaml"
+    ]
+  },
+  "runtime": {
+    "required_data_paths": [
+      "SkyUI_SE.esp",
+      "Scripts/SKI_QuestBase.pex",
+      "Scripts/SKI_ConfigBase.pex",
+      "Scripts/SKI_ConfigManager.pex",
+      "Scripts/SKI_PlayerLoadGameAlias.pex",
+      "Scripts/SKI_QF_ConfigManagerInstance.pex",
+      "Scripts/OpenMCM_ConfigMenu.pex",
+      "Seq/SkyUI_SE.seq",
+      "Interface/quest_journal.swf"
+    ]
+  },
+  "papyrus": [
+    {
+      "script": "SKI_QuestBase",
+      "extends": "Quest",
+      "source_globs": [
+        "**/SKI_QuestBase.psc"
+      ],
+      "required_declarations": [
+        "int property CurrentVersion auto hidden",
+        "function CheckVersion()",
+        "int function GetVersion()",
+        "event OnVersionUpdateBase(int a_version)",
+        "event OnVersionUpdate(int a_version)",
+        "event OnGameReload()"
+      ],
+      "required_identifiers": [],
+      "required_literals": []
+    },
+    {
+      "script": "SKI_ConfigBase",
+      "extends": "SKI_QuestBase",
+      "source_globs": [
+        "**/SKI_ConfigBase.psc"
+      ],
+      "required_declarations": [
+        "event OnInit()",
+        "event OnGameReload()",
+        "string property JOURNAL_MENU = \"Journal Menu\" autoReadonly",
+        "string property MENU_ROOT = \"_root.ConfigPanelFader.configPanel\" autoReadonly",
+        "int property STATE_DEFAULT = 0 autoReadonly",
+        "int property STATE_RESET = 1 autoReadonly",
+        "int property STATE_SLIDER = 2 autoReadonly",
+        "int property STATE_MENU = 3 autoReadonly",
+        "int property STATE_COLOR = 4 autoReadonly",
+        "int property STATE_INPUT = 5 autoReadonly",
+        "int property OPTION_TYPE_EMPTY = 0x00 autoReadonly",
+        "int property OPTION_TYPE_HEADER = 0x01 autoReadonly",
+        "int property OPTION_TYPE_TEXT = 0x02 autoReadonly",
+        "int property OPTION_TYPE_TOGGLE = 0x03 autoReadonly",
+        "int property OPTION_TYPE_SLIDER = 0x04 autoReadonly",
+        "int property OPTION_TYPE_MENU = 0x05 autoReadonly",
+        "int property OPTION_TYPE_COLOR = 0x06 autoReadonly",
+        "int property OPTION_TYPE_KEYMAP = 0x07 autoReadonly",
+        "int property OPTION_TYPE_INPUT = 0x08 autoReadonly",
+        "int property OPTION_FLAG_NONE = 0x00 autoReadonly",
+        "int property OPTION_FLAG_DISABLED = 0x01 autoReadonly",
+        "int property OPTION_FLAG_HIDDEN = 0x02 autoReadonly",
+        "int property OPTION_FLAG_WITH_UNMAP = 0x04 autoReadonly",
+        "int property LEFT_TO_RIGHT = 1 autoReadonly",
+        "int property TOP_TO_BOTTOM = 2 autoReadonly",
+        "string property ModName auto",
+        "string[] property Pages auto",
+        "string property CurrentPage",
+        "event OnConfigInit()",
+        "event OnConfigRegister()",
+        "event OnConfigOpen()",
+        "event OnConfigClose()",
+        "event OnVersionUpdate(int a_version)",
+        "event OnPageReset(string a_page)",
+        "event OnOptionHighlight(int a_option)",
+        "event OnOptionSelect(int a_option)",
+        "event OnOptionDefault(int a_option)",
+        "event OnOptionSliderOpen(int a_option)",
+        "event OnOptionSliderAccept(int a_option, float a_value)",
+        "event OnOptionMenuOpen(int a_option)",
+        "event OnOptionMenuAccept(int a_option, int a_index)",
+        "event OnOptionColorOpen(int a_option)",
+        "event OnOptionColorAccept(int a_option, int a_color)",
+        "event OnOptionInputOpen(int a_option)",
+        "event OnOptionInputAccept(int a_option, string a_input)",
+        "event OnOptionKeyMapChange(int a_option, int a_keyCode, string a_conflictControl, string a_conflictName)",
+        "event OnHighlightST()",
+        "event OnSelectST()",
+        "event OnDefaultST()",
+        "event OnSliderOpenST()",
+        "event OnSliderAcceptST(float a_value)",
+        "event OnMenuOpenST()",
+        "event OnMenuAcceptST(int a_index)",
+        "event OnColorOpenST()",
+        "event OnColorAcceptST(int a_color)",
+        "event OnInputOpenST()",
+        "event OnInputAcceptST(string a_input)",
+        "event OnKeyMapChangeST(int a_keyCode, string a_conflictControl, string a_conflictName)",
+        "event OnConfigManagerReset(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnConfigManagerReady(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnMessageDialogClose(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "int function GetVersion()",
+        "string function GetCustomControl(int a_keyCode)",
+        "function ForcePageReset()",
+        "function SetTitleText(string a_text)",
+        "function SetInfoText(string a_text)",
+        "function SetCursorPosition(int a_position)",
+        "function SetCursorFillMode(int a_fillMode)",
+        "int function AddEmptyOption()",
+        "int function AddHeaderOption(string a_text, int a_flags = 0)",
+        "int function AddTextOption(string a_text, string a_value, int a_flags = 0)",
+        "int function AddToggleOption(string a_text, bool a_checked, int a_flags = 0)",
+        "int function AddSliderOption(string a_text, float a_value, string a_formatString = \"{0}\", int a_flags = 0)",
+        "int function AddMenuOption(string a_text, string a_value, int a_flags = 0)",
+        "int function AddColorOption(string a_text, int a_color, int a_flags = 0)",
+        "int function AddKeyMapOption(string a_text, int a_keyCode, int a_flags = 0)",
+        "int function AddInputOption(string a_text, string a_value, int a_flags = 0)",
+        "function AddTextOptionST(string a_stateName, string a_text, string a_value, int a_flags = 0)",
+        "function AddToggleOptionST(string a_stateName, string a_text, bool a_checked, int a_flags = 0)",
+        "function AddSliderOptionST(string a_stateName, string a_text, float a_value, string a_formatString = \"{0}\", int a_flags = 0)",
+        "function AddMenuOptionST(string a_stateName, string a_text, string a_value, int a_flags = 0)",
+        "function AddColorOptionST(string a_stateName, string a_text, int a_color, int a_flags = 0)",
+        "function AddKeyMapOptionST(string a_stateName, string a_text, int a_keyCode, int a_flags = 0)",
+        "function AddInputOptionST(string a_stateName, string a_text, string a_value, int a_flags = 0)",
+        "function LoadCustomContent(string a_source, float a_x = 0.0, float a_y = 0.0)",
+        "function UnloadCustomContent()",
+        "function SetOptionFlags(int a_option, int a_flags, bool a_noUpdate = false)",
+        "function SetTextOptionValue(int a_option, string a_value, bool a_noUpdate = false)",
+        "function SetToggleOptionValue(int a_option, bool a_checked, bool a_noUpdate = false)",
+        "function SetSliderOptionValue(int a_option, float a_value, string a_formatString = \"{0}\", bool a_noUpdate = false)",
+        "function SetMenuOptionValue(int a_option, string a_value, bool a_noUpdate = false)",
+        "function SetColorOptionValue(int a_option, int a_color, bool a_noUpdate = false)",
+        "function SetKeyMapOptionValue(int a_option, int a_keyCode, bool a_noUpdate = false)",
+        "function SetInputOptionValue(int a_option, string a_value, bool a_noUpdate = false)",
+        "function SetOptionFlagsST(int a_flags, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetTextOptionValueST(string a_value, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetToggleOptionValueST(bool a_checked, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetSliderOptionValueST(float a_value, string a_formatString = \"{0}\", bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetMenuOptionValueST(string a_value, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetColorOptionValueST(int a_color, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetKeyMapOptionValueST(int a_keyCode, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetInputOptionValueST(string a_value, bool a_noUpdate = false, string a_stateName = \"\")",
+        "function SetSliderDialogStartValue(float a_value)",
+        "function SetSliderDialogDefaultValue(float a_value)",
+        "function SetSliderDialogRange(float a_minValue, float a_maxValue)",
+        "function SetSliderDialogInterval(float a_value)",
+        "function SetMenuDialogStartIndex(int a_value)",
+        "function SetMenuDialogDefaultIndex(int a_value)",
+        "function SetMenuDialogOptions(string[] a_options)",
+        "function SetColorDialogStartColor(int a_color)",
+        "function SetColorDialogDefaultColor(int a_color)",
+        "function SetInputDialogStartText(string a_text)",
+        "bool function ShowMessage(string a_message, bool a_withCancel = true, string a_acceptLabel = \"$Accept\", string a_cancelLabel = \"$Cancel\")",
+        "function OpenConfig()",
+        "function CloseConfig()",
+        "function SetPage(string a_page, int a_index)",
+        "function RequestSliderDialogData(int a_index)",
+        "function RequestMenuDialogData(int a_index)",
+        "function RequestColorDialogData(int a_index)",
+        "function RequestInputDialogData(int a_index)",
+        "function SetSliderValue(float a_value)",
+        "function SetMenuIndex(int a_index)",
+        "function SetColorValue(int a_color)",
+        "function SetInputText(string a_text)",
+        "function SelectOption(int a_index)",
+        "function ResetOption(int a_index)",
+        "function HighlightOption(int a_index)",
+        "function RemapKey(int a_index, int a_keyCode, string a_conflictControl, string a_conflictName)"
+      ],
+      "required_identifiers": [
+        "_configID",
+        "_currentPageNum",
+        "_state",
+        "_cursorPosition",
+        "_cursorFillMode",
+        "_optionFlagsBuf",
+        "_textBuf",
+        "_strValueBuf",
+        "_numValueBuf",
+        "_sliderParams",
+        "_menuParams",
+        "_colorParams",
+        "_infoText",
+        "_inputStartText",
+        "_messageResult",
+        "_waitForMessage"
+      ],
+      "required_exact_identifiers": [
+        "SKI_QuestBase",
+        "SKI_ConfigManager"
+      ],
+      "forbidden_identifiers": [
+        "sKI_QuestBase",
+        "sKI_ConfigManager"
+      ],
+      "required_literals": [
+        "SKICP_configManagerReady",
+        "SKICP_configManagerReset",
+        "SKICP_messageDialogClosed",
+        "Journal Menu",
+        "_root.ConfigPanelFader.configPanel"
+      ],
+      "required_event_bindings": [
+        {
+          "event": "SKICP_configManagerReady",
+          "handler": "OnConfigManagerReady"
+        },
+        {
+          "event": "SKICP_configManagerReset",
+          "handler": "OnConfigManagerReset"
+        },
+        {
+          "event": "SKICP_messageDialogClosed",
+          "handler": "OnMessageDialogClose"
+        }
+      ],
+      "required_patterns": [
+        {
+          "pattern": "(?im)^\\s*int\\s+_configID\\b",
+          "description": "MCM Helper requires int _configID"
+        },
+        {
+          "pattern": "(?im)^\\s*int\\[\\]\\s+_optionFlagsBuf\\b",
+          "description": "MCM Helper requires int[] _optionFlagsBuf"
+        },
+        {
+          "pattern": "(?im)^\\s*string\\[\\]\\s+_textBuf\\b",
+          "description": "MCM Helper requires string[] _textBuf"
+        },
+        {
+          "pattern": "(?im)^\\s*string\\[\\]\\s+_strValueBuf\\b",
+          "description": "MCM Helper requires string[] _strValueBuf"
+        },
+        {
+          "pattern": "(?im)^\\s*float\\[\\]\\s+_numValueBuf\\b",
+          "description": "MCM Helper requires float[] _numValueBuf"
+        },
+        {
+          "pattern": "(?is)event\\s+OnConfigManagerReady\\s*\\([^)]*\\).*?if\\s+candidate\\s*==\\s*none\\s*\\r?\\n\\s*return\\b.*?previousManager\\s*=\\s*_configManager.*?previousID\\s*=\\s*_configID.*?assignedID\\s*=\\s*candidate\\.RegisterMod\\s*\\(\\s*self\\s*,\\s*ModName\\s*\\).*?if\\s+assignedID\\s*>=\\s*0.*?_configManager\\s*=\\s*candidate.*?_configID\\s*=\\s*assignedID.*?if\\s+previousManager\\s*!=\\s*candidate\\s*\\|\\|\\s*previousID\\s*!=\\s*assignedID.*?OnConfigRegister\\s*\\(",
+          "description": "ready-event heartbeats always use SkyUI's original RegisterMod ABI and suppress duplicate callbacks only after registration succeeds"
+        }
+      ]
+    },
+    {
+      "script": "SKI_ConfigManager",
+      "extends": "SKI_QuestBase",
+      "source_globs": [
+        "**/SKI_ConfigManager.psc"
+      ],
+      "required_declarations": [
+        "event OnInit()",
+        "event OnGameReload()",
+        "event OnUpdate()",
+        "event OnMenuOpen(string a_menuName)",
+        "event OnMenuClose(string a_menuName)",
+        "event OnModSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnPageSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnOptionHighlight(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnOptionSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnOptionDefault(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnKeymapChange(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnSliderSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnSliderAccept(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnMenuSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnMenuAccept(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnColorSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnColorAccept(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnInputSelect(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnInputAccept(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "event OnDialogCancel(string a_eventName, string a_strArg, float a_numArg, Form a_sender)",
+        "int function GetVersion()",
+        "int function RegisterMod(SKI_ConfigBase a_menu, string a_modName)",
+        "int function UnregisterMod(SKI_ConfigBase a_menu)",
+        "function ForceReset()",
+        "function CleanUp()"
+      ],
+      "required_identifiers": [
+        "_modConfigs",
+        "_modNames",
+        "_activeConfig"
+      ],
+      "required_exact_identifiers": [
+        "SKI_QuestBase",
+        "SKI_ConfigBase",
+        "SKI_ConfigBase[]"
+      ],
+      "forbidden_identifiers": [
+        "sKI_QuestBase",
+        "sKI_ConfigBase",
+        "sKI_ConfigBase[]"
+      ],
+      "required_literals": [
+        "SKICP_modSelected",
+        "SKICP_pageSelected",
+        "SKICP_optionHighlighted",
+        "SKICP_optionSelected",
+        "SKICP_optionDefaulted",
+        "SKICP_keymapChanged",
+        "SKICP_sliderSelected",
+        "SKICP_sliderAccepted",
+        "SKICP_menuSelected",
+        "SKICP_menuAccepted",
+        "SKICP_colorSelected",
+        "SKICP_colorAccepted",
+        "SKICP_inputSelected",
+        "SKICP_inputAccepted",
+        "SKICP_dialogCanceled",
+        "SKICP_configManagerReady",
+        "SKICP_configManagerReset",
+        "Journal Menu",
+        "_root.ConfigPanelFader.configPanel"
+      ],
+      "required_event_bindings": [
+        {
+          "event": "SKICP_modSelected",
+          "handler": "OnModSelect"
+        },
+        {
+          "event": "SKICP_pageSelected",
+          "handler": "OnPageSelect"
+        },
+        {
+          "event": "SKICP_optionHighlighted",
+          "handler": "OnOptionHighlight"
+        },
+        {
+          "event": "SKICP_optionSelected",
+          "handler": "OnOptionSelect"
+        },
+        {
+          "event": "SKICP_optionDefaulted",
+          "handler": "OnOptionDefault"
+        },
+        {
+          "event": "SKICP_keymapChanged",
+          "handler": "OnKeymapChange"
+        },
+        {
+          "event": "SKICP_sliderSelected",
+          "handler": "OnSliderSelect"
+        },
+        {
+          "event": "SKICP_sliderAccepted",
+          "handler": "OnSliderAccept"
+        },
+        {
+          "event": "SKICP_menuSelected",
+          "handler": "OnMenuSelect"
+        },
+        {
+          "event": "SKICP_menuAccepted",
+          "handler": "OnMenuAccept"
+        },
+        {
+          "event": "SKICP_colorSelected",
+          "handler": "OnColorSelect"
+        },
+        {
+          "event": "SKICP_colorAccepted",
+          "handler": "OnColorAccept"
+        },
+        {
+          "event": "SKICP_inputSelected",
+          "handler": "OnInputSelect"
+        },
+        {
+          "event": "SKICP_inputAccepted",
+          "handler": "OnInputAccept"
+        },
+        {
+          "event": "SKICP_dialogCanceled",
+          "handler": "OnDialogCancel"
+        }
+      ],
+      "required_sent_events": [
+        "SKICP_configManagerReady",
+        "SKICP_configManagerReset"
+      ],
+      "required_patterns": [
+        {
+          "pattern": "(?im)^\\s*SKI_ConfigBase\\[\\]\\s+_modConfigs\\b",
+          "description": "MCM Helper requires SKI_ConfigBase[] _modConfigs"
+        },
+        {
+          "pattern": "(?im)^\\s*string\\[\\]\\s+_modNames\\b",
+          "description": "MCM Helper requires string[] _modNames"
+        }
+      ]
+    },
+    {
+      "script": "SKI_PlayerLoadGameAlias",
+      "extends": "ReferenceAlias",
+      "source_globs": [
+        "**/SKI_PlayerLoadGameAlias.psc"
+      ],
+      "required_declarations": [
+        "event OnPlayerLoadGame()"
+      ],
+      "required_identifiers": [
+        "SKI_QuestBase",
+        "OnGameReload"
+      ],
+      "required_exact_identifiers": [
+        "SKI_QuestBase"
+      ],
+      "forbidden_identifiers": [
+        "sKI_QuestBase"
+      ],
+      "required_literals": []
+    },
+    {
+      "script": "SKI_QF_ConfigManagerInstance",
+      "extends": "Quest",
+      "source_globs": [
+        "**/SKI_QF_ConfigManagerInstance.psc"
+      ],
+      "required_declarations": [
+        "ReferenceAlias property Alias_PlayerRef auto",
+        "function Fragment_0()"
+      ],
+      "required_identifiers": [
+        "SKI_ConfigManager"
+      ],
+      "required_exact_identifiers": [
+        "SKI_ConfigManager"
+      ],
+      "forbidden_identifiers": [
+        "sKI_ConfigManager"
+      ],
+      "required_literals": []
+    },
+    {
+      "script": "OpenMCM_ConfigMenu",
+      "extends": "SKI_ConfigBase",
+      "source_globs": [
+        "**/OpenMCM_ConfigMenu.psc"
+      ],
+      "required_declarations": [
+        "int function GetVersion()",
+        "event OnConfigInit()",
+        "event OnPageReset(string a_page)"
+      ],
+      "required_identifiers": [
+        "SetTitleText",
+        "SetCursorFillMode",
+        "AddHeaderOption",
+        "AddTextOption"
+      ],
+      "required_exact_identifiers": [
+        "SKI_ConfigBase"
+      ],
+      "forbidden_identifiers": [
+        "sKI_ConfigBase"
+      ],
+      "required_literals": [
+        "OpenMCM",
+        "Status",
+        "Online",
+        "Version 4"
+      ]
+    }
+  ],
+  "ui_assets": [
+    {
+      "name": "MCM ConfigPanel bridge",
+      "runtime_path": "Interface/quest_journal.swf",
+      "source_globs": [
+        "**/ModConfigPanel/*.as",
+        "**/ModConfigPanel/ConfigPanel.as",
+        "**/ConfigPanel.as",
+        "**/MCMCompatPanel.as"
+      ],
+      "required_tokens": [
+        "SKICP_modSelected",
+        "SKICP_pageSelected",
+        "SKICP_optionHighlighted",
+        "SKICP_optionSelected",
+        "SKICP_optionDefaulted",
+        "SKICP_keymapChanged",
+        "SKICP_sliderSelected",
+        "SKICP_sliderAccepted",
+        "SKICP_menuSelected",
+        "SKICP_menuAccepted",
+        "SKICP_colorSelected",
+        "SKICP_colorAccepted",
+        "SKICP_inputSelected",
+        "SKICP_inputAccepted",
+        "SKICP_dialogCanceled",
+        "SKICP_messageDialogClosed",
+        "setModNames",
+        "setPageNames",
+        "setCustomContentParams",
+        "loadCustomContent",
+        "unloadCustomContent",
+        "setTitleText",
+        "setInfoText",
+        "setOptionFlagsBuffer",
+        "setOptionTextBuffer",
+        "setOptionStrValueBuffer",
+        "setOptionNumValueBuffer",
+        "setSliderDialogParams",
+        "setMenuDialogOptions",
+        "setMenuDialogParams",
+        "setColorDialogParams",
+        "setInputDialogParams",
+        "flushOptionBuffers",
+        "selectedKeyCode",
+        "invalidateOptionData",
+        "setOptionFlags",
+        "forcePageReset",
+        "showMessageDialog",
+        "initExtensions",
+        "setPlatform",
+        "startPage",
+        "endPage",
+        "unlock",
+        "handleInput",
+        "EndRemapMode",
+        "optionCursorIndex",
+        "optionCursor",
+        "strValue",
+        "numValue"
+      ],
+      "required_dispatched_events": [
+        "SKICP_modSelected",
+        "SKICP_pageSelected",
+        "SKICP_optionHighlighted",
+        "SKICP_optionSelected",
+        "SKICP_optionDefaulted",
+        "SKICP_keymapChanged",
+        "SKICP_sliderSelected",
+        "SKICP_sliderAccepted",
+        "SKICP_menuSelected",
+        "SKICP_menuAccepted",
+        "SKICP_colorSelected",
+        "SKICP_colorAccepted",
+        "SKICP_inputSelected",
+        "SKICP_inputAccepted",
+        "SKICP_dialogCanceled",
+        "SKICP_messageDialogClosed"
+      ]
+    },
+    {
+      "name": "Journal Menu MCM host",
+      "runtime_path": "Interface/quest_journal.swf",
+      "source_globs": [
+        "**/PauseMenu/Quest_Journal.as",
+        "**/Quest_Journal.as",
+        "**/MCMCompat*.as",
+        "**/MCMCompatBootstrap.as",
+        "**/MCMCompatEntry.as"
+      ],
+      "required_source_tokens": [
+        "ConfigPanelFader",
+        "configPanel",
+        "ConfigPanelOpen",
+        "ConfigPanelClose",
+        "initExtensions",
+        "setPlatform",
+        "startPage",
+        "endPage"
+      ],
+      "required_source_patterns": [
+        {
+          "pattern": "(?i)(?:function\\s+ConfigPanelOpen\\s*\\(|ConfigPanelOpen\\s*=\\s*function\\s*\\()",
+          "description": "the Journal host must define ConfigPanelOpen"
+        },
+        {
+          "pattern": "(?i)(?:function\\s+ConfigPanelClose\\s*\\(|ConfigPanelClose\\s*=\\s*function\\s*\\()",
+          "description": "the Journal host must define ConfigPanelClose"
+        }
+      ],
+      "required_release_tokens": [
+        "configUI",
+        "InitExtensions",
+        "SetPlatform",
+        "startPage",
+        "endPage"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+FormKey: 000800:OpenMCM.esp
+EditorID: OpenMCM_ConfigMenuInstance
+VirtualMachineAdapter:
+  Scripts:
+  - Name: OpenMCM_ConfigMenu
+    Properties:
+    - MutagenObjectType: ScriptStringProperty
+      Name: ModName
+      Data: OpenMCM
+    - MutagenObjectType: ScriptStringListProperty
+      Name: Pages
+      Data:
+      - Status
+  FileName: ''
+  Aliases:
+  - Property:
+      Name: ''
+      Object: 000800:OpenMCM.esp
+      Alias: 0
+    Scripts:
+    - Name: SKI_PlayerLoadGameAlias
+Name:
+  TargetLanguage: English
+  Value: OpenMCM Config Menu
+Flags:
+- StartGameEnabled
+- 0x10
+- RunOnce
+NextAliasID: 1
+Aliases:
+- Name: PlayerAlias
+  Flags: []
+  ForcedReference: 000014:Skyrim.esm
+  VoiceTypes: Null

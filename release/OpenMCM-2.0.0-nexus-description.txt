@@ -1,0 +1,53 @@
+[size=5][b]OpenMCM 2.0[/b][/size]
+
+A standalone MCM host that can also be used with SkyUI installed. Use existing SkyUI-compatible MCMs and MCM Helper menus, organise the mod list, and optionally explore a new author API—all in one FOMOD installer.
+
+[b]Choose who supplies the other interfaces[/b]
+[list]
+[*]Standalone: OpenMCM supplies the MCM without full SkyUI. It does not add SkyUI inventory, favourites, widgets or other non-MCM interfaces.
+[*]With SkyUI: keep real SkyUI for those features while OpenMCM remains the MCM host. OpenMCM replaces the Journal, not only its MCM panel; other Journal replacements are not retained.
+[/list]
+The installer recommends a mode using the SkyUI plugin plus BSA/loose-file markers. Review its choice: hidden/undeployed files and saved installer presets can affect detection.
+
+[b]New in 2.0[/b]
+[list]
+[*]Integrated Redone-style browser: name search, favourites, hidden entries, custom display names, priorities and per-tab sorting/scrolling.
+[*]Save-local browser preferences with no DLL required. Optional shared browser storage can carry browser preferences across saves.
+[*]Experimental author API 1: named standard controls, automatic help, guarded live text/help updates, page navigation and conditional option groups.
+[*]Player control of the extension under OpenMCM > Status > Runtime > Enable OpenMCM API. It is off by default and saved per savegame. Ordinary MCMs do not require it.
+[*]Optional Field Guide teaching MCM: a useful expedition planner with carry-weight readouts, checklist, planning budget, colour/input controls and an optional keyboard summary hotkey. Includes commented source, editable plugin records and a step-by-step author guide.
+[*]One consolidated FOMOD with independent optional components. No required add-on downloads.
+[/list]
+OpenMCM's package is version 2.0.0; its SkyUI-compatible MCM API remains version 4 and the experimental extension remains API 1. Field Guide has its own version, 1.0.0. Existing menus are not automatically converted to the extension.
+
+[b]Requirements[/b]
+Launch through SKSE matching your Skyrim runtime. Install MCM Helper separately when a provider requires it, plus each mod's own dependencies. Full SkyUI is required only for the With SkyUI installer mode.
+
+The ordinary host, save-local browser, API and Field Guide need no OpenMCM DLL. Optional shared browser storage requires matching SKSE, Address Library and Visual C++ 2022 x64 runtime. It allowlists 1.5.97, 1.6.640, 1.6.1170 and 1.7.104 (source/build-supported targets, not in-game certifications; no VR). The separate optional chargen component is for Skyrim 1.7.104.0 only. All optional components are omitted by default.
+
+[b]Install or upgrade[/b]
+[list=1]
+[*]Exit Skyrim, back up saves/profile settings, then replace the previous OpenMCM main package with this FOMOD through your mod manager. Disable obsolete OpenMCM mouse/diagnostic add-ons.
+[*]Review the detected host mode. Standalone uses the supplied compatibility SkyUI_SE.esp without full SkyUI. With SkyUI keeps the real SkyUI ESP/BSA and enables OpenMCM.esp after it.
+[*]Let OpenMCM win Journal, SKI_ConfigBase and SKI_ConfigManager conflicts. In With SkyUI mode do not leave old standalone plugin or translation overrides masking actual SkyUI. Keep MCM Helper's required provider files.
+[*]If selecting Field Guide, enable OpenMCM_FieldGuide.esp after SkyUI_SE.esp. Do not install a second copy from the separate sample archive.
+[*]Launch through SKSE and open System > Mod Configuration. To try extension-only sample actions, enable the OpenMCM API in the Runtime section.
+[/list]
+Do not install MCM Menu Redone alongside OpenMCM: both supply the MCM host. This integration is not every Redone feature and does not import its old profile. Switching between standalone and coexistence on an existing save is not a verified migration; use a separate profile/new game or a save already using actual SkyUI. Do not clean a save or uninstall/save/reinstall as a workaround.
+
+[b]Compatibility and current limitations[/b]
+On 23 September 2026 the owner reported their current setup working and approved publication. This is setup-specific confirmation, not exhaustive verification of every optional component or supported runtime.
+
+Release validation passed all 16 installer combinations and 9,448 archive/selected-install checks. The final Python suite ran 517 tests: 516 passed and one optional integration test was skipped. Automated validation does not replace in-game regression testing.
+
+The owner reported the following installed MCMs working in standalone OpenMCM 1.1: Skyrim Unbound Reborn 3.0.17, Stats Editor MCM Menu 1.0, Atlas Map Markers 3.0.4, LOD Unloading Bug Fix 0.2, Nether's Follower Framework 2.8.6b, The New Gentleman 4.2.6 and XPMSE 5.06, with MCM Helper 1.6.3. These are historical, setup-specific results—not a fresh certification of every 2.0 feature or every version of those mods.
+
+The registry remains 128 MCMs for MCM Helper compatibility. Browser preferences are not mod-settings presets. API 1 is experimental and requires author adoption; it does not extend MCM Helper's JSON schema or make OpenMCM-dependent author scripts run on unmodified SkyUI alone. New browser, coexistence, API and Field Guide behavior still needs in-game regression testing. The optional chargen adjustment is not confirmed as a fix for the reported freezes. The reported exit-to-desktop crash is not claimed fixed.
+
+[b]For mod authors[/b]
+Read docs/OpenMCM-API.md and examples/field-guide/README.md in the archive. Field Guide demonstrates all standard control types, raw page navigation, conditional groups, live updates, and cancellation-safe delayed presentation. Adapt its own script/quest identities; depend on the host rather than bundling replacements for its SDK or manager.
+
+[b]Credits and licences[/b]
+See LICENSE and THIRD_PARTY_NOTICES.md in the archive. The optional shared-storage integration adapts original GPL-licensed MCM Menu Redone native persistence code; its licence and corresponding source are included. SkyUI and MCM mods are the compatibility references. Bethesda-derived Journal assets retain their separate licensing status.
+
+Development was assisted by AI coding tools. In-game verification was performed by the project owner.

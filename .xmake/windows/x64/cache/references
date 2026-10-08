@@ -1,0 +1,7 @@
+{
+    packages = {
+        [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxtk\24.2.0\f6fb9eaf439246fdb823f48a8816ec0c]],
+        [[C:\Users\josep\AppData\Local\.xmake\packages\d\directxmath\2024.02\b43cee1705a040bdb171c586b0ad9685]],
+        [[C:\Users\josep\AppData\Local\.xmake\packages\s\spdlog\v1.16.0\1053dccb2da94316b3bef3cb1db15374]]
+    }
+}

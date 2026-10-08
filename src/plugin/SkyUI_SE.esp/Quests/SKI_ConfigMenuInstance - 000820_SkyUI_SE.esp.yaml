@@ -1,0 +1,9 @@
+FormKey: 000820:SkyUI_SE.esp
+EditorID: SKI_ConfigMenuInstance
+Name:
+  TargetLanguage: English
+  Value: Legacy SkyUI Config Menu (inactive)
+Flags:
+- RunOnce
+NextAliasID: 0
+Aliases: []
